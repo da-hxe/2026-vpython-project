@@ -1,44 +1,43 @@
 Web VPython 3.2
-head = sphere(size = vec(2, 1.5, 1), texture = "https://i.postimg.cc/prNzKfg8/image.png", pos = vec(0, 3, 0))
-body = cone(size = vec(1, 3, 1))
-body.axis = vec(0, 2, 0)
-left_arm = box(size = vec(1, 0.1, 0.1), pos = vec(-1, 1, 0))
-left_arm.axis = vec(1, 1, 0)
-right_arm = box(size = vec(1, 0.1, 0.1), pos = vec(1, 1, 0))
-right_arm.axis = vec(-1, 1, 0)
+head = sphere(size = vec(2, 1.5, 1), pos = vec(0, 2, 0))
+body = box(size = vec(1, 1, 1), pos = vec(0, 1, 0))
+left_arm = box(size = vec(1, 0.1, 0.1), pos = vec(-0.4, 1, 0))
+right_arm = box(size = vec(1, 0.1, 0.1), pos = vec(0.4, 1, 0))
 
-left_leg = box(size = vec(0.1, 1, 0.1), pos = vec(-0.5, -0.5, 0))
-right_leg = box(size = vec(0.1, 1, 0.1), pos = vec(0.5, -0.5, 0))
+left_leg = box(size = vec(0.1, 1, 0.1), pos = vec(-0.3, 0.3, 0))
+right_leg = box(size = vec(0.1, 1, 0.1), pos = vec(0.3, 0.3, 0))
+left_eye = sphere(size = vec(0.1, 0.1, 0.1), color = color.black, pos = vec(-0.45, 2, 0.5))
+right_eye = sphere(size = vec(0.1, 0.1, 0.1), color = color.black, pos = vec(0.45, 2, 0.5))
 
-wilseen = compound([head, body, left_arm, right_arm, left_leg, right_leg, body.axis, left_arm.axis, right_arm.axis])
+wilseen = compound([head, body, left_arm, right_arm, left_leg, right_leg, left_eye, right_eye])
+b = box(texture = "https://i.postimg.cc/FztGTcxQ/omg-jypapi.jpg", size = vec(3, 1, 4), pos = vec(3, 0, 0))
 
-a = box(pos = vec(2.5, -0.75, 0), size = vec(5, 0.5 ,1), texture = "https://i.postimg.cc/26mPTQkq/38addbf8973ff8f99f524482e6676cee.jpg")
-c = box(pos = vec(-2.5, -0.75, 0), size = vec(5, 0.5 ,1), texture = "https://i.postimg.cc/26mPTQkq/38addbf8973ff8f99f524482e6676cee.jpg")
-
+a = box(pos = vec(2.5, -1.5, 0), size = vec(5, 0.5 ,1), texture = "https://i.postimg.cc/26mPTQkq/38addbf8973ff8f99f524482e6676cee.jpg")
+c = box(pos = vec(-2.5, -1.5, 0), size = vec(5, 0.5 ,1), texture = "https://i.postimg.cc/26mPTQkq/38addbf8973ff8f99f524482e6676cee.jpg")
 
 g = vec(0,-9.8, 0)
-b.v = vec(0, 0, 0)
+wilseen.v = vec(0, 0, 0)
 dt = 0.01
-b.pos = b.pos + b.v*dt
-b.v = b.v + g*dt
+wilseen.pos = wilseen.pos + wilseen.v*dt
+wilseen.v = wilseen.v + g*dt
 
 
-while b.pos.y >= 0 :
+while wilseen.pos.y >= 0 :
     rate(100)
-    b.pos = b.pos + b.v*dt
-    b.v = b.v + g*dt
+    wilseen.pos = wilseen.pos + wilseen.v*dt
+    wilseen.v = wilseen.v + g*dt
 
 while True :
     rate(100)
     k = keysdown()
     if 'd' in k : 
-        b.pos.x = b.pos.x + 0.1
+        wilseen.pos.x = wilseen.pos.x + 0.1
     if 'a' in k :
-        b.pos.x = b.pos.x - 0.1
+        wilseen.pos.x = wilseen.pos.x - 0.1
     if 's' in k :
-        while b.pos.y < 0.1 and b.pos.y > -5 :
+        while wilseen.pos.y < 0.1 and wilseen.pos.y > -5 :
             rate(250)
-            b.pos = b.pos + b.v*dt
+            wilseen.pos = wilseen.pos + wilseen.v*dt
         
 
 
